@@ -41,17 +41,33 @@ const handleSubmit = (e) =>{
 
       axios.
         post('http://localhost:5000/api/post/ukuran',{NamaUkuran,Panjang,Lebar}).
-        then(()=>{
-          setNamaUkuran('')
-          setPanjang('')
-          setLebar('')
+        then((res)=>{
+
+          if(res.data.num === 1){
+
+             setNamaUkuran('')
+             setPanjang('')
+             setLebar('')
+
+             toast.success(res.data.message)
+
+             
+          setTimeout(()=>{
+            navigate('/');
+          },500);
+
+          }else{
+
+            toast.error(res.data.message)
+          
+          }
+
+
         }).catch((err)=>toast.error(err.response.data))
 
-      toast.success("Berhasil")
       
-      setTimeout(()=>{
-        navigate('/');
-      },500);
+      
+      
     }
     
 

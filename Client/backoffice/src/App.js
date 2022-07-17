@@ -2,6 +2,7 @@ import {GlobalStyle, RootContainer,MainContentContainer,NavContainer} from './Gl
 import SideNav from './Components/SideNav'
 import SizePage from './Components/SizePage'
 import HomePage from './Components/HomePage';
+import SizeTablePage from './Components/SizeTablePage';
 import {ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { BrowserRouter as 
@@ -26,7 +27,8 @@ function App() {
       
       <MainContentContainer>
         <Routes>
-          <Route  path='/' element={ <HomePage/> }/>
+          <Route  path='/' element={ <SizeTablePage/> }/>
+          {/* <Route  path='/' element={ <HomePage/> }/> */}
           <Route  path='/contact/size_page' element={ <SizePage/> }/>
         </Routes>
       </MainContentContainer>
