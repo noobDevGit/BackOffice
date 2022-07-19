@@ -199,3 +199,30 @@ app.put('/api/put/ukuran/:id',(req,res)=>{
 
    
 })
+
+
+
+//Delete Size
+app.delete('/api/delete/ukuran/:id',(req,res)=>{
+        const{id} = req.params;
+
+        const sqldelete =   'DELETE FROM master_ukuran WHERE id = ?'
+
+        db.query(sqldelete,id,(error,result)=>{
+
+            if (error) {
+
+                console.log(error);
+                
+            } else {
+
+
+                res.send('Data Successfully Deleted')
+
+                
+            }
+
+
+        })
+
+})

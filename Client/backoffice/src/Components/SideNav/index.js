@@ -8,6 +8,14 @@ import {LinkTo} from '../LinkStyleElements'
          
          
          const SideNav = () => {
+
+
+          const halo = (x)=>{
+
+            window.confirm("Are you sure you want to delete? "+x)
+
+          }
+
            return (
             <NavContainer>
                 <NavTitle>
@@ -15,17 +23,17 @@ import {LinkTo} from '../LinkStyleElements'
                 </NavTitle>
                 <NavUl>
                   <LinkTo to={'/'} >
-                    <NavLi>Home</NavLi>
+                    <NavLi id="bro">Home</NavLi>
                   </LinkTo>
                   
                   <LinkTo to={'/size_page'}>
-                    <NavLi>Ukuran Pakaian</NavLi>
+                    <NavLi>Product Size</NavLi>
                   </LinkTo>
 
                     <NavLi>User Management</NavLi>
                     
-                    <NavLi>Jenis Pakaian</NavLi>
-                    <NavLi>Pakaian</NavLi>
+                    <NavLi>Product Type</NavLi>
+                    <NavLi>Product</NavLi>
                 </NavUl>
              </NavContainer>
            )

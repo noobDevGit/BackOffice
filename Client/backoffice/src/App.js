@@ -17,7 +17,9 @@ function App() {
     <GlobalStyle/>
     <RootContainer>
 
-        <ToastContainer position='top-center' />
+        <ToastContainer 
+        position='top-center' 
+        theme='colored'/>
 
       
 

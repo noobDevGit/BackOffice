@@ -10,9 +10,13 @@ import { MainContainer,
 
 import axios from 'axios'
 
+import moment from "moment";
+
 import { useEffect,useState } from 'react'
 
 import { LinkTo } from '../LinkStyleElements'  
+
+import { toast} from 'react-toastify';
 
 
 
@@ -37,24 +41,43 @@ const SizeTablePage = () => {
     },[AllUkuran]) 
 
 
+    const deleteSize = (id)=>{
+
+        if (window.confirm("Are you sure you want to delete this data ?")) {
+
+        axios
+        .delete(`http://localhost:5000/api/delete/ukuran/${id}`)
+        .then((result)=>{
+
+        toast.success(result.data)
+
+
+        }).catch((err)=>toast.error(err.response.data))
+            
+        }
+
+
+    }
+
+
   return (
     <MainContainer>
     
             <TitleContianer>
-                <TitleContent>List Ukuran</TitleContent>
+                <TitleContent>Size List</TitleContent>
             </TitleContianer>
 
             <TableContainer>
 
             <LinkTo to={'/size_page/add_size'}>
-                <NewDataButton> Tambah Data </NewDataButton>
+                <NewDataButton> Add Data </NewDataButton>
                 </LinkTo>
                         <table className='styled-table'>
                         <thead>
                             <tr>
-                                <th style={{textAlign:'center'}}>Nama Ukuran </th>
-                                <th style={{textAlign:'center'}}>Panjang (Cm)</th>
-                                <th style={{textAlign:'center'}}>Lebar (Cm)</th>
+                                <th style={{textAlign:'center'}}>Size </th>
+                                <th style={{textAlign:'center'}}>Height (Cm)</th>
+                                <th style={{textAlign:'center'}}>Width (Cm)</th>
                                 <th style={{textAlign:'center'}}>Created By</th>
                                 <th style={{textAlign:'center'}}>Created Date</th>
                                 <th style={{textAlign:'center'}}>Action</th>
@@ -69,14 +92,14 @@ const SizeTablePage = () => {
                                     <td>{content.Width}</td>
                                     <td>{content.Height}</td>
                                     <td>{content.Nama}</td>
-                                    <td>{content.CreatedDate}</td>
+                                    <td>{moment(content.CreatedDate).format('dddd MMMM YYYY, h:mm:ss a')}</td>
                                     <td>
 
                                     <LinkTo to={`/size_page/edit_size/${content.id}`}>
                                         <ButtonEdit>Edit</ButtonEdit>
                                     </LinkTo>
 
-                                    <ButtonDelete>Delete</ButtonDelete>
+                                    <ButtonDelete onClick={()=>deleteSize(content.id)}>Delete</ButtonDelete>
                                     </td>
                                 </tr>
                                 ))}

@@ -82,9 +82,9 @@ const handleSubmit = (e) =>{
              toast.success(res.data.message)
 
              
-          setTimeout(()=>{
-            navigate('/');
-          },500);
+             setTimeout(()=>{
+              navigate('/size_page');
+            },500);
 
           }else{
 
