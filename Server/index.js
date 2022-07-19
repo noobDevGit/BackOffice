@@ -37,6 +37,7 @@ app.get('/',(req,res)=>{
     })
 })
 
+// Insert Ukuran
 app.post('/api/post/ukuran',(req,res)=>{
 
     const {NamaUkuran, Panjang, Lebar} = req.body
@@ -83,4 +84,118 @@ app.post('/api/post/ukuran',(req,res)=>{
 
 
     })
+})
+
+
+//get specific ukuran
+app.get('/api/get/ukuran/:id',(req,res)=>{
+
+    const{id} = req.params;
+
+    const SqlStatement= "SELECT * FROM master_ukuran where id = ?;";
+
+    db.query(SqlStatement,id,(error,result)=>{
+
+
+       if (error) {
+
+        console.log(error);
+        
+       } else {
+        
+            res.send(result)
+
+       }
+
+
+    })
+
+})
+
+//get All ukuran
+
+app.get('/api/get/ukuran',(req,res)=>{
+
+    
+    const SqlStatement=
+    "select master_ukuran.*, master_user.Nama FROM master_ukuran INNER JOIN master_user ON master_ukuran.CreatedBy = master_user.Id;"
+
+    db.query(SqlStatement,(error,result)=>{
+
+
+       if (error) {
+
+        console.log(error);
+        
+       } else {
+
+
+        res.send(JSON.stringify(result))
+
+    
+        
+
+       }
+
+
+    })
+
+})
+
+
+//Update ukuran
+app.put('/api/put/ukuran/:id',(req,res)=>{
+    const{id} = req.params;
+    const {NamaUkuran, Panjang, Lebar, CurSize} = req.body
+    const SqlUpdate = "update master_ukuran set NamaUkuran = ?, Height = ?, Width = ?  where id = ?";
+    const sqlCheckDuplicate = "select count(*) as 'Row' from master_ukuran where NamaUkuran = ?"
+
+    if (NamaUkuran.toUpperCase() === CurSize.toUpperCase()) {
+
+        db.query(SqlUpdate, [NamaUkuran, Panjang, Lebar,id], (error,result)=>{
+            if (error) {
+                console.log(error);
+            }
+            res.send({
+                message:'Data Succesfully Updated',
+                num:1
+                })
+        })
+        
+    } else {
+
+   db.query(sqlCheckDuplicate,NamaUkuran,(error,result)=>{
+
+        if (error) {
+            console.log(error);
+            
+        }else if (parseInt(JSON.stringify(result[0].Row))>0) {
+            
+            res.send({
+                message:'Size Already Exist',
+                num:0
+                })
+
+                console.log(CurSize + '    '+ NamaUkuran);
+
+        } else {
+
+            db.query(SqlUpdate, [NamaUkuran, Panjang, Lebar,id], (error,result)=>{
+                if (error) {
+                    console.log(error);
+                }
+                res.send({
+                    message:'Data Succesfully Updated',
+                    num:1
+                    })
+            })
+
+        }
+    
+   })
+        
+        
+    }
+
+   
 })

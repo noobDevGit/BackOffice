@@ -27,9 +27,11 @@ function App() {
       
       <MainContentContainer>
         <Routes>
-          <Route  path='/' element={ <SizeTablePage/> }/>
-          {/* <Route  path='/' element={ <HomePage/> }/> */}
-          <Route  path='/contact/size_page' element={ <SizePage/> }/>
+          
+          <Route  path='/' element={ <HomePage/> }/>
+          <Route  path='/size_page' element={ <SizeTablePage/>  }/>
+          <Route  path='/size_page/add_size' element={ <SizePage/>  }/>
+          <Route  path='/size_page/edit_size/:id' element={ <SizePage/>  }/>
         </Routes>
       </MainContentContainer>
 

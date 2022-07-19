@@ -52,10 +52,14 @@ export const Input = styled.input`
     border-radius: 4px;
     border: 1px solid #ccc;
 
+   
+
     &:focus{
     outline: none;
     box-shadow:0 0 5px #3e68d5;
     }
+
+   
 
 `
 

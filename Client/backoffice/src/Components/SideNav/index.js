@@ -2,9 +2,9 @@ import { NavUl,
          NavLi,
          NavContainer,
          NavTitle,
-         LinkTo } from "./SideNavElements";
+          } from "./SideNavElements";
 
-
+import {LinkTo} from '../LinkStyleElements'
          
          
          const SideNav = () => {
@@ -18,7 +18,7 @@ import { NavUl,
                     <NavLi>Home</NavLi>
                   </LinkTo>
                   
-                  <LinkTo to={'/contact/size_page'}>
+                  <LinkTo to={'/size_page'}>
                     <NavLi>Ukuran Pakaian</NavLi>
                   </LinkTo>
 

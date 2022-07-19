@@ -41,9 +41,22 @@ export const ButtonEdit = styled.button`
     border-radius:4px ;
     margin-right: 5px ;
 
+    &:hover {
+ 
+       cursor: pointer;
+    }
+
 
 `
 
 export const ButtonDelete = styled(ButtonEdit)`
  background-color: red ;
+`
+
+export const NewDataButton = styled(ButtonEdit)`
+ background-color: blue ;
+ float: right;
+ width: fit-content;
+ padding: 5px 5px;
+ margin-bottom: 10px;
 `

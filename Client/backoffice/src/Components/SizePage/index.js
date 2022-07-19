@@ -6,7 +6,7 @@ import { MainContainer,
          MainForm,
          Label,
          Input,
-         Button } from './SizeElements'
+         Button } from '../AllFormElements'
 
 import { toast} from 'react-toastify';
 
@@ -19,8 +19,36 @@ import { useEffect,useState } from 'react'
 
 const SizePage = () => {
 
-  //
+  //get param
+  const {id} = useParams();
+
+  //current data const
+  const [CurSize, setCursize] = useState('')
+  const [CurHeight, setCurHeight] = useState('')
+  const [CurWidth, setCurWidth] = useState('')
+  
+
+  //navigate
   const navigate = useNavigate()
+
+  useEffect(() => {
+
+    axios
+    .get(`http://localhost:5000/api/get/ukuran/${id}`)
+    .then((result)=>{
+
+
+       setNamaUkuran(result.data[0].NamaUkuran)
+       setPanjang(result.data[0].Height)
+       setLebar(result.data[0].Width)
+
+       setCursize(result.data[0].NamaUkuran)
+       setCurHeight(result.data[0].Height)
+       setCurWidth(result.data[0].Width)
+
+    });
+
+}, [id]) 
 
   //useState Instance
   const [NamaUkuran, setNamaUkuran] = useState('')
@@ -39,7 +67,9 @@ const handleSubmit = (e) =>{
 
     }else{
 
-      axios.
+      if(!id){
+
+        axios.
         post('http://localhost:5000/api/post/ukuran',{NamaUkuran,Panjang,Lebar}).
         then((res)=>{
 
@@ -65,9 +95,50 @@ const handleSubmit = (e) =>{
 
         }).catch((err)=>toast.error(err.response.data))
 
-      
-      
-      
+
+      }else{
+
+        if(NamaUkuran.toUpperCase() === CurSize.toUpperCase() && Panjang === CurHeight && Lebar === CurWidth){
+        
+          toast.info('No Changes Made')
+
+           setCursize('')
+           setCurWidth('')
+           setCurHeight('')
+
+          setTimeout(()=>{
+            navigate('/size_page');
+          },500);
+
+        }else
+
+        axios.
+        put(`http://localhost:5000/api/put/ukuran/${id}`,{NamaUkuran,Panjang,Lebar,CurSize}).
+        then((res)=>{
+
+          if (res.data.num === 1) {
+
+            toast.success(res.data.message)
+            setCursize('')
+            setCurWidth('')
+            setCurHeight('')
+
+            setTimeout(()=>{
+              navigate('/size_page');
+            },500);
+
+          }else{
+
+            toast.error(res.data.message)
+          }
+
+        })
+
+        
+
+      }
+  
+
     }
     
 
@@ -90,6 +161,7 @@ const handleSubmit = (e) =>{
             value={NamaUkuran}
             onChange={(e)=>setNamaUkuran(e.target.value)}
             name='ukuran'
+            required
           />
           <br/><br/>
 
@@ -100,6 +172,7 @@ const handleSubmit = (e) =>{
            value={Panjang}
            onChange={(e)=>setPanjang(e.target.value)}
            name='panjang'
+           required
            />
           <br/><br/>
 
@@ -110,6 +183,7 @@ const handleSubmit = (e) =>{
            value={Lebar}
            onChange={(e)=>setLebar(e.target.value)}
            name='lebar'
+           required
            />
           <br/><br/><br/>
 
