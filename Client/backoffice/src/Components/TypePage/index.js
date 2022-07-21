@@ -17,15 +17,14 @@ import axios from 'axios'
 import { useEffect,useState } from 'react'     
     
 
-const SizePage = () => {
+const TypePage = () => {
 
   //get param
   const {id} = useParams();
 
   //current data const
-  const [CurSize, setCursize] = useState('')
-  const [CurHeight, setCurHeight] = useState('')
-  const [CurWidth, setCurWidth] = useState('')
+  const [CurType, setType] = useState('')
+ 
   
 
   //navigate
@@ -51,18 +50,17 @@ const SizePage = () => {
 }, [id]) 
 
   //useState Instance
-  const [NamaUkuran, setNamaUkuran] = useState('')
-  const [Panjang, setPanjang] = useState('')
-  const [Lebar, setLebar] = useState('')
+  const [TypeName, setTypeName] = useState('')
+
 
 const handleSubmit = (e) =>{
 
   e.preventDefault()
     
 
-    if (!NamaUkuran || !Panjang || !Lebar) {
+    if (!TypeName) {
 
-      toast.error("Seluruh kolom harus terisi")
+      toast.error("Field cannot be empty")
       
 
     }else{
@@ -197,4 +195,4 @@ const handleSubmit = (e) =>{
   )
 }
 
-export default SizePage
+export default TypePage

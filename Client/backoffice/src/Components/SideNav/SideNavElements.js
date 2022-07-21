@@ -37,7 +37,7 @@ padding: 10px 10px;
 font-size: 15px;
 transition: 0.2s;
 color: #6f7377;
-
+${props => props.State ?'background-color:#e0f3ff;color: #3e68d5;':''}
 
 &:hover {
        background-color:#e0f3ff;

@@ -10,7 +10,7 @@ import { MainContainer,
 
 import axios from 'axios'
 
-import moment from "moment";
+import moment from 'moment'
 
 import { useEffect,useState } from 'react'
 
@@ -92,7 +92,7 @@ const SizeTablePage = () => {
                                     <td>{content.Width}</td>
                                     <td>{content.Height}</td>
                                     <td>{content.Nama}</td>
-                                    <td>{moment(content.CreatedDate).format('dddd MMMM YYYY, h:mm:ss a')}</td>
+                                    <td>{moment(content.CreatedDate).format('MMMM Do YYYY, h:mm:ss a')}</td>
                                     <td>
 
                                     <LinkTo to={`/size_page/edit_size/${content.id}`}>
