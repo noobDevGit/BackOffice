@@ -23,34 +23,36 @@ const TypePage = () => {
   const {id} = useParams();
 
   //current data const
-  const [CurType, setType] = useState('')
+  const [CurType, setCurType] = useState('')
+
+   //useState Instance
+   const [TypeName, setTypeName] = useState('')
  
   
 
   //navigate
   const navigate = useNavigate()
 
-  useEffect(() => {
+//   useEffect(() => {
 
-    axios
-    .get(`http://localhost:5000/api/get/ukuran/${id}`)
-    .then((result)=>{
+//     axios
+//     .get(`http://localhost:5000/api/get/ukuran/${id}`)
+//     .then((result)=>{
 
 
-       setNamaUkuran(result.data[0].NamaUkuran)
-       setPanjang(result.data[0].Height)
-       setLebar(result.data[0].Width)
+//        setNamaUkuran(result.data[0].NamaUkuran)
+//        setPanjang(result.data[0].Height)
+//        setLebar(result.data[0].Width)
 
-       setCursize(result.data[0].NamaUkuran)
-       setCurHeight(result.data[0].Height)
-       setCurWidth(result.data[0].Width)
+//        setCursize(result.data[0].NamaUkuran)
+//        setCurHeight(result.data[0].Height)
+//        setCurWidth(result.data[0].Width)
 
-    });
+//     });
 
-}, [id]) 
+// }, [id]) 
 
-  //useState Instance
-  const [TypeName, setTypeName] = useState('')
+ 
 
 
 const handleSubmit = (e) =>{
@@ -68,20 +70,20 @@ const handleSubmit = (e) =>{
       if(!id){
 
         axios.
-        post('http://localhost:5000/api/post/ukuran',{NamaUkuran,Panjang,Lebar}).
+        post('http://localhost:5000/api/post/type',{TypeName}).
         then((res)=>{
 
           if(res.data.num === 1){
 
-             setNamaUkuran('')
-             setPanjang('')
-             setLebar('')
+             setCurType('')
+             setTypeName('')
+            
 
              toast.success(res.data.message)
 
              
              setTimeout(()=>{
-              navigate('/size_page');
+              navigate('/');
             },500);
 
           }else{
@@ -94,95 +96,75 @@ const handleSubmit = (e) =>{
         }).catch((err)=>toast.error(err.response.data))
 
 
-      }else{
+      // }else{
 
-        if(NamaUkuran.toUpperCase() === CurSize.toUpperCase() && Panjang === CurHeight && Lebar === CurWidth){
+      //   if(NamaUkuran.toUpperCase() === CurSize.toUpperCase() && Panjang === CurHeight && Lebar === CurWidth){
         
-          toast.info('No Changes Made')
+      //     toast.info('No Changes Made')
 
-           setCursize('')
-           setCurWidth('')
-           setCurHeight('')
+      //      setCursize('')
+      //      setCurWidth('')
+      //      setCurHeight('')
 
-          setTimeout(()=>{
-            navigate('/size_page');
-          },500);
+      //     setTimeout(()=>{
+      //       navigate('/size_page');
+      //     },500);
 
-        }else
+      //   }else
 
-        axios.
-        put(`http://localhost:5000/api/put/ukuran/${id}`,{NamaUkuran,Panjang,Lebar,CurSize}).
-        then((res)=>{
+      //   axios.
+      //   put(`http://localhost:5000/api/put/ukuran/${id}`,{NamaUkuran,Panjang,Lebar,CurSize}).
+      //   then((res)=>{
 
-          if (res.data.num === 1) {
+      //     if (res.data.num === 1) {
 
-            toast.success(res.data.message)
-            setCursize('')
-            setCurWidth('')
-            setCurHeight('')
+      //       toast.success(res.data.message)
+      //       setCursize('')
+      //       setCurWidth('')
+      //       setCurHeight('')
 
-            setTimeout(()=>{
-              navigate('/size_page');
-            },500);
+      //       setTimeout(()=>{
+      //         navigate('/size_page');
+      //       },500);
 
-          }else{
+      //     }else{
 
-            toast.error(res.data.message)
-          }
+      //       toast.error(res.data.message)
+      //     }
 
-        })
+      //   })
 
         
 
-      }
+      // }
   
 
     }
     
-
+  }
 }
 
   return (
     <MainContainer>
  
       <TitleContianer>
-        <TitleContent>Master Size</TitleContent>
+        <TitleContent>Master Type</TitleContent>
       </TitleContianer>
 
       <FormContainer>
         <MainForm 
          onSubmit={handleSubmit}
          >
-          <Label>Size Name :</Label>
+          <Label>Type Name :</Label>
           <br/><br/>
           <Input
-            value={NamaUkuran}
-            onChange={(e)=>setNamaUkuran(e.target.value)}
-            name='ukuran'
+            value={TypeName}
+            onChange={(e)=>setTypeName(e.target.value)}
+            name='TypeName'
             required
           />
-          <br/><br/>
 
-          <Label>Height (in Cm) :</Label>
-          <br/><br/>
-          <Input 
-           type={'number'} 
-           value={Panjang}
-           onChange={(e)=>setPanjang(e.target.value)}
-           name='panjang'
-           required
-           />
-          <br/><br/>
-
-          <Label>width (in Cm) :</Label>
-          <br/><br/>
-          <Input 
-           type={'number'}
-           value={Lebar}
-           onChange={(e)=>setLebar(e.target.value)}
-           name='lebar'
-           required
-           />
+         
           <br/><br/><br/>
 
           <Button type='submit'/>

@@ -58,13 +58,16 @@ import { useState } from "react";
                   
                   <NavLi State={ActiveState[1].state} onClick={()=>ActiveLink(1)}>User Management</NavLi>
 
-                  <LinkTo to={'/size_page'} onClick={()=>ActiveLink(2)}>
-                    <NavLi State={ActiveState[2].state} >Product Size</NavLi>
+                  <LinkTo to={'/size_page'} >
+                    <NavLi State={ActiveState[2].state} onClick={()=>ActiveLink(2)} >Product Size</NavLi>
                   </LinkTo>
 
-                    
-                    
+                  <LinkTo to={'/type_page'} >
                     <NavLi State={ActiveState[3].state} onClick={()=>ActiveLink(3)}>Product Type</NavLi>
+                  </LinkTo>
+
+                  
+              
                     <NavLi State={ActiveState[4].state} onClick={()=>ActiveLink(4)} > Product</NavLi>
                 </NavUl>
              </NavContainer>

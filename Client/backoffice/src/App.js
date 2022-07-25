@@ -3,6 +3,7 @@ import SideNav from './Components/SideNav'
 import SizePage from './Components/SizePage'
 import HomePage from './Components/HomePage';
 import SizeTablePage from './Components/SizeTablePage';
+import TypePage from './Components/TypePage';
 import {ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { BrowserRouter as 
@@ -31,6 +32,7 @@ function App() {
         <Routes>
           
           <Route  path='/' element={ <HomePage/> }/>
+          <Route  path='/type_page' element={ <TypePage/> }/>
           <Route  path='/size_page' element={ <SizeTablePage/>  }/>
           <Route  path='/size_page/add_size' element={ <SizePage/>  }/>
           <Route  path='/size_page/edit_size/:id' element={ <SizePage/>  }/>
