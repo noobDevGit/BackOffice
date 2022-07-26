@@ -1,16 +1,9 @@
 const express = require('express')
 const app = express()
 const bodyParser = require('body-parser')
-const mysql = require('mysql2')
 const cors = require('cors')
 
-exports.db = mysql.createPool({
 
-    host: "localhost",
-    user: "root",
-    password: "RootRoot123",
-    database: "onlinestore"
-});
 
 app.use(cors());
 app.use(express.json());
@@ -52,7 +45,7 @@ app.delete('/api/delete/ukuran/:id',sizeController.deleteSize)
 
 /////////////////////////////////////////// End Of Size Controller///////////////////
 
-///////////////////////////////////////////Type Controller///////////////////
+///////////////////////////////////////////Type Controller//////////////////////////
 
 
 // Type Controller Instance
@@ -60,3 +53,17 @@ const typeController = require('../Server/Controllers/TypeController/TypeControl
 
 // Insert Type
 app.post('/api/post/type',typeController.CreateType)
+
+
+// get Type
+app.get('/api/get/type',typeController.getType)
+
+//get specific type
+app.get('/api/get/type/:id',typeController.getSpecificType)
+
+
+//Delete Size
+app.delete('/api/delete/type/:id',typeController.deleteType)
+
+//Update size
+app.put('/api/put/type/:id',typeController.updateType)

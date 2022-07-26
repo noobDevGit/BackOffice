@@ -1,4 +1,4 @@
-const sqlCon = require('../../index')
+const sqlCon = require('../../mysql')
 
 //get All Size
 exports.getSize = (req,res)=>{
