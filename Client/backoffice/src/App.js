@@ -5,6 +5,7 @@ import HomePage from './Components/HomePage';
 import SizeTablePage from './Components/SizeTablePage';
 import TypePage from './Components/TypePage';
 import TypeTablePage from './Components/TypeTablePage';
+import ProductPage from './Components/ProductPage';
 import {ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { BrowserRouter as 
@@ -33,6 +34,9 @@ function App() {
         <Routes>
           
           <Route  path='/' element={ <HomePage/> }/>
+
+          <Route  path='/product_page' element={ <ProductPage/> }/>
+
           <Route  path='/type_page' element={ <TypeTablePage/> }/>
           <Route  path='/type_page/add_type' element={ <TypePage/> }/>
           <Route  path='/type_page/edit_type/:id' element={ <TypePage/> }/>

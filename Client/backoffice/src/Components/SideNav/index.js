@@ -67,9 +67,11 @@ import { useState } from "react";
                   </LinkTo>
 
                   
-              
-                    <NavLi State={ActiveState[4].state} onClick={()=>ActiveLink(4)} > Product</NavLi>
-                </NavUl>
+                    <LinkTo to={'/product_page'}>
+                      <NavLi State={ActiveState[4].state} onClick={()=>ActiveLink(4)} > Product</NavLi>
+                    </LinkTo>
+
+                      </NavUl>
              </NavContainer>
            )
          }
