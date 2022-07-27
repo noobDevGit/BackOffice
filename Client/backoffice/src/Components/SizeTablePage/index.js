@@ -89,8 +89,8 @@ const SizeTablePage = () => {
 
                                 <tr key={content.id}>
                                     <td>{content.NamaUkuran}</td>
-                                    <td>{content.Width}</td>
                                     <td>{content.Height}</td>
+                                    <td>{content.Width}</td>
                                     <td>{content.Nama}</td>
                                     <td>{moment(content.CreatedDate).format('MMMM Do YYYY, h:mm:ss a')}</td>
                                     <td>
