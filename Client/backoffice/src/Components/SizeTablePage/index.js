@@ -25,6 +25,7 @@ import '../AllTableCss.css'
 const SizeTablePage = () => {
 
     const [AllUkuran,setAllUkuran] =useState ([])
+    const [StopUseEffect,setStopUseEffect] = useState(false)
 
     useEffect(() => {
 
@@ -33,12 +34,12 @@ const SizeTablePage = () => {
         .then((result)=>{
 
         setAllUkuran(result.data)
-
+        setStopUseEffect(false)
 
         })
         
 
-    },[AllUkuran]) 
+    },[StopUseEffect]) 
 
 
     const deleteSize = (id)=>{
@@ -50,7 +51,7 @@ const SizeTablePage = () => {
         .then((result)=>{
 
         toast.success(result.data)
-
+        setStopUseEffect(true)
 
         }).catch((err)=>toast.error(err.response.data))
             
