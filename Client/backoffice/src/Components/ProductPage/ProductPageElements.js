@@ -4,7 +4,7 @@ export const CheckboxContainer = styled.div`
 
         height: auto;
         width: 100%;
-        background-color: teal;
+        
 
 
 `
